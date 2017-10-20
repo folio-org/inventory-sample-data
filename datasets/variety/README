@@ -1,0 +1,16 @@
+This dataset is comprised of a single small tsv (tab-seperated-value) file containing items of the less common material types.
+
+Breakdown:
+~20x (Audio - Download)
+~20x (Microfiche)
+~20x (Microform - Other)
+~20x (Cartography)
+~20x (Electronic Resource - Other)
+
+This dataset can be appended to a larger dataset to add some material type variety.
+
+e.g. 
+
+cat variety.tsv >> 1kItems.tsv
+
+Source: Boston Public Library MARC records (Open Library Project).  See https://archive.org/details/bpl_marc for details.

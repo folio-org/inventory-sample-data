@@ -1,0 +1,14 @@
+{
+   "users": "datasets/5kItems/names.tsv",
+   "groups": "datasets/common/groups.tsv",
+   "logins": "datasets/5kItems/logins.tsv",
+   "permissions": "datasets/5kItems/perms.tsv",
+   "materials": "datasets/common/materials.tsv",
+   "loanTypes": "datasets/common/loanTypes.tsv",
+   "items": "datasets/5kItems/items.tsv",
+   "circulation": "datasets/5kItems/circulate.tsv",
+   "requests": "datasets/5kItems/requests.tsv",
+   "notes": "datasets/5kItems/notes.tsv",
+   "instances": "datasets/5kItems/instances.tsv",
+   "notifications": "datasets/5kItems/notifications.tsv"
+}
