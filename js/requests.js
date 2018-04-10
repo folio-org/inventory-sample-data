@@ -11,7 +11,7 @@ const names = fs.readFileSync(process.argv[2], 'utf-8').split('\n').filter(Boole
 const loans = fs.readFileSync(process.argv[3], 'utf-8').split('\n').filter(Boolean);
 const items = fs.readFileSync(process.argv[4], 'utf-8').split('\n').filter(Boolean);
 const delim = '\t';
-const adminGroupUUID = '"patronGroup":"11111111-1111-1111-1111-111111111104"';
+const adminGroupUUID = '"patronGroup":"11111111-1111-1111-a111-111111111104"';
 const adminUserUUID = getAdminUserUUID();
 // Fulfilment preferences are defined in
 // the API schema. It is an enum with the following 2 values. It is a
