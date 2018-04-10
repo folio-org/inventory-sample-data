@@ -6,7 +6,7 @@ var uuid = require('uuid');
 var names = fs.readFileSync(process.argv[2], 'utf-8').split('\n');
 var items = fs.readFileSync(process.argv[3], 'utf-8').split('\n');
 var delim = '\t';
-var adminUUID = '"patronGroup":"11111111-1111-1111-1111-111111111104"';
+var adminUUID = '"patronGroup":"11111111-1111-1111-a111-111111111104"';
 
 for(let i=0; i<items.length-1; i++) {
    

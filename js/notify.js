@@ -11,7 +11,7 @@ const users = fs.readFileSync(process.argv[2], 'utf-8').split('\n').filter(Boole
 const items = fs.readFileSync(process.argv[3], 'utf-8').split('\n').filter(Boolean);
 
 const delim = '\t';
-const adminGroupUUID = '"patronGroup":"11111111-1111-1111-1111-111111111104"';
+const adminGroupUUID = '"patronGroup":"11111111-1111-1111-a111-111111111104"';
 const adminUserUUID = getAdminUserUUID();
 
 const minPercentage = .50;
