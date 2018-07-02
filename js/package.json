@@ -1,7 +1,7 @@
 {
   "name": "index.js",
   "version": "0.0.1",
-  "description": "Folio performance test",
+  "description": "",
   "main": "index.js",
   "dependencies": {
     "crypto": "^0.0.3",
@@ -17,12 +17,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ebscois/gse.hosting.db-populate.git"
+    "url": "git+https://github.com/folio-org/inventory-sample-data.git"
   },
   "author": "EBSCO - EIS",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/ebscois/gse.hosting.db-populate/issues"
+    "url": "https://github.com/folio-org/inventory-sample-data/issues"
   },
-  "homepage": "https://github.com/ebscois/gse.hosting.db-populate#readme"
+  "homepage": "https://github.com/folio-org/inventory-sample-data#readme"
 }
