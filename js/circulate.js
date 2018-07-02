@@ -1,38 +1,51 @@
 'use strict';
 
 var fs = require('fs');
-var uuid = require('uuid');
+const es = require('event-stream');
+const filter = require('stream-filter');
+const uuidv4 = require('uuid/v4');
+
+var delim = '\t';
+var adminUUID = '"patronGroup":"5464cbd9-2c7d-4286-8e89-20c75980884b"';
+var loanPolicyId = "d9cd0bed-1b49-4b5e-a7bd-064b8d177231";
 
 var names = fs.readFileSync(process.argv[2], 'utf-8').split('\n');
-var items = fs.readFileSync(process.argv[3], 'utf-8').split('\n');
-var delim = '\t';
-var adminUUID = '"patronGroup":"11111111-1111-1111-1111-111111111104"';
+const stream = fs.createReadStream(process.argv[3], {encoding: 'utf-8'})
+	.pipe(es.split('\n'))
+	.pipe(filter(function(line) {
+		return line != null;
+	})).pipe(es.mapSync(function(line) {
+		let item = JSON.parse(line.toString().split(delim)[1]);
 
-for(let i=0; i<items.length-1; i++) {
-   
-   let item = JSON.parse(items[i].split(delim)[1]);
+		if(item.status.name == "Checked out") {
 
-   if(item.status.name == "Checked out") {
+			let userId = null;
+			while(userId == null) {
+				let userIdx = Math.floor(Math.random() * (names.length-1)) + 1;
+				if(names[userIdx].includes('"active":true') && !names[userIdx].includes(adminUUID)) {
+					userId = names[userIdx].split(delim)[0];
+				}
+			}
 
-      let userId = null;
-      while(userId == null) {
-         let userIdx = Math.floor(Math.random() * (names.length-1)) + 1;
-         if(names[userIdx].includes('"active":true') && !names[userIdx].includes(adminUUID)) {
-            userId = names[userIdx].split(delim)[0];
-         }
-      }
+			let json = {
+					itemId: item.id,
+					status: {
+						name: "Open"
+					},
+					action: "checkedout",
+                                        loanDate: "{LOAN_DATE}",
+					dueDate: "{DUE_DATE}",
+					userId: userId,
+					id: uuidv4(),
+					loanPolicyId: loanPolicyId,
+					metadata: {
+						createdDate: new Date().toISOString(),
+						createdByUserId: userId,
+						updatedDate: new Date().toISOString(),
+						updatedByUserId: userId
+					}
+			};
 
-      let json = {
-         itemId: item.id,
-         status: {
-            name: "Open"
-         },
-         action: "checkedout",
-         loanDate: new Date().toISOString().split('T')[0],
-         userId: userId,
-         id: uuid.v4()
-      };
- 
-      console.log(item.id + delim + JSON.stringify(json));
-   }
-}
+			console.log(item.id + delim + JSON.stringify(json));
+		}
+	}));

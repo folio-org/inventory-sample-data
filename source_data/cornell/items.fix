@@ -1,0 +1,53 @@
+marc_map(001,bibId); 
+marc_map(245a,title); 
+marc_map(245b,subtitle);
+marc_map(246ab,alternativeTitle);
+
+marc_map(245c,author); 
+marc_map(245h,medium); 
+
+marc_map(020a,isbn,split:1);
+marc_map(022a,issn,split:1);
+marc_map(035az,oclc,split:1);
+marc_map(010az,lccn,split:1);
+do list(path: lccn) trim(.) end; 
+
+marc_map(500,note); 
+marc_map(852p,barcode);
+marc_map(852khim,callNumber,join:" ",pluck:1)
+marc_map(907a,sierraId); 
+marc_map(110abd,corporateName,join:" ",pluck:1)
+marc_map(710abd,addedEntryCorporateName,join:" ",pluck:1)
+marc_map(100a,mainEntryPersonalName,split:1); 
+marc_map(600a,subjectAddedEntryPersonalName,split:1); 
+marc_map(700a,addedEntryPersonalName,split:1); 
+marc_map(800a,seriesAddedEntryPersonalName,split:1); 
+
+marc_map(260a,place,join:" "); 
+marc_map(260b,publisher,join:" "); 
+marc_map(260c,dateOfPublication,join:" "); 
+
+marc_map(250ab,edition,join:" "); 
+marc_map(300abc,description,join:" "); 
+
+marc_map(490av,seriesStmt,join:" "); 
+split_field("seriesStmt",";")   
+
+#- Subject
+marc_map('6**^0123456789','subject.$append', join:' ')
+replace_all('subject.*','\.$','')
+sort_field('subject', uniq:1)
+copy_field('subject','subject') 
+
+marc_map(050ab,classificationNumber,join:' ');
+
+marc_map(856u,urls,split:1);
+
+marc_map('008_/35-37','lang')
+if all_match('lang','\W+')
+    set_field('lang','und')
+end
+marc_map(008_/06,resourceType);
+
+retain(bibId,title,subtitle,alternativeTitle,isbn,issn,oclc,lccn,medium,note,sierraId,barcode,mainEntryPersonalName,subjectAddedEntryPersonalName,addedEntryPersonalName,seriesAddedEntryPersonalName,place,publisher,dateOfPublication,edition,description,seriesStmt,subject,classificationNumber,urls,lang);
+

@@ -6,7 +6,10 @@
   "dependencies": {
     "crypto": "^0.0.3",
     "crypto-js": "^3.1.8",
-    "uuid": "^3.1.0"
+    "event-stream": "^3.3.4",
+    "stream-filter": "^2.1.0",
+    "uuid": "^3.3.2",
+    "uuid4": "^1.0.0"
   },
   "devDependencies": {},
   "scripts": {
@@ -14,13 +17,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ebscois/gse.hosting.operations.git"
+    "url": "git+https://github.com/folio-org/inventory-sample-data.git"
   },
   "author": "EBSCO - EIS",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/ebscois/gse.hosting.operations/issues"
+    "url": "https://github.com/folio-org/inventory-sample-data/issues"
   },
-  "homepage": "https://github.com/ebscois/gse.hosting.operations#readme"
+  "homepage": "https://github.com/folio-org/inventory-sample-data#readme"
 }
-

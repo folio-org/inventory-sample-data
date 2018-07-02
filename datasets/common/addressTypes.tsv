@@ -1,0 +1,6 @@
+c3840f08-9c94-4ba3-972f-e5696a085f25	{"addressType" : "Payment", "desc" : "Payment Address"}
+59bfdaf5-dcbc-4193-9340-885234872eb6	{"addressType" : "Work", "desc" : "Work Address"}
+73c11dc3-3dd7-4be9-bc0d-46009e778ae3	{"addressType" : "Returns", "desc" : "Returns Address"}
+ae749f82-a4ef-47ca-b29c-0a5ad7bbff03	{"addressType" : "Home", "desc" : "Home Address"}
+446d617d-e469-453d-9bd6-68ab25fe8dd3	{"addressType" : "Claim", "desc" : "Claim Address"}
+7ec2aa92-9c09-4c01-8414-aee816b75f28	{"addressType" : "Order", "desc" : "Order Address"}

@@ -1,0 +1,14 @@
+marc_map(866a,item,split:1);
+marc_map(004,bibId)
+marc_map(001,holdingsId)
+marc_map(852b,permanentLocationId)
+marc_map(852khim,callNumber,join:" ",pluck:1);
+do 
+    list(path: item) split_field(.,";");
+end;
+# flatten the array of arras to a single array list
+flatten(item)
+do list(path: item) 
+    trim(.) 
+end; 
+retain(bibId,holdingsId,item,callNumber,permanentLocationId);
