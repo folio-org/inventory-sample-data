@@ -5,20 +5,31 @@
 'use strict';
 
 const fs = require('fs');
+const es = require('event-stream');
+const filter = require('stream-filter');
 const uuidv4 = require('uuid/v4');
 
 const users = fs.readFileSync(process.argv[2], 'utf-8').split('\n').filter(Boolean);
-const items = fs.readFileSync(process.argv[3], 'utf-8').split('\n').filter(Boolean);
 
 const delim = '\t';
-const adminGroupUUID = '"patronGroup":"11111111-1111-1111-1111-111111111104"';
+const adminGroupUUID = '"patronGroup":"5464cbd9-2c7d-4286-8e89-20c75980884b"';
 const adminUserUUID = getAdminUserUUID();
 
 const minPercentage = .50;
 const maxPercentage = .75;
 
 // Notifications can apply to any user, even admins, so we'll use the whole list.
-addRandomNotifications(users, "items", items);
+const items = [];
+fs.createReadStream(process.argv[3], {encoding: 'utf-8'})
+	.pipe(es.split('\n'))
+	.pipe(filter(function(line) {
+		return line != null;
+	})).pipe(es.mapSync(function(line) {
+		const itemId = line.toString().split(delim)[0];
+		items.push(itemId);
+	})).on('end', function() {
+		addRandomNotifications(users, "items", items);
+	});
 
 function addRandomNotifications(objects, linkName, linkObjects) {
 	const numObjects = getRandomInt(minPercentage * objects.length,
@@ -33,7 +44,7 @@ function addRandomNotifications(objects, linkName, linkObjects) {
 			const json = {
 					id: uuidv4(),
 					recipientId: objectJSON.id,
-					link: linkName + '/' + linkObjects[getRandomInt(0, linkObjects.length)].split(delim)[0],
+					link: linkName + '/' + linkObjects[getRandomInt(0, linkObjects.length)],
 					text: "You have received a notification for '" + linkName + "'. Follow the link for more details.",
 					seen: false,
 					metadata: {

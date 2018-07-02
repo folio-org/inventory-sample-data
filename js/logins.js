@@ -1,21 +1,8 @@
 'use strict';
 
-var fs = require('fs');
-var crypto = require('crypto');
-var CryptoJS = require('crypto-js');
-
-function genSalt (length) {
-   return crypto.randomBytes(Math.ceil(length/2))
-           .toString('hex')
-           .toUpperCase()
-           .slice(0,length);
-};
-
-function hashPassword (password, salt) {
-   var salt = CryptoJS.enc.Hex.parse(salt);
-   var key = CryptoJS.PBKDF2(password, salt, { keySize: 160, iterations: 1000 });
-   return key.toString().substring(0,40).toUpperCase();
-};
+const fs = require('fs');
+const uuid = require('uuid');
+const passUtils = require('./pass-utils.js');
 
 var names = fs.readFileSync(process.argv[2], 'utf-8').split('\n');
 
@@ -29,17 +16,20 @@ for(let i=0; i<names.length-1; i++) {
    if (name.length > 2) {
       salt = name[2];
       hash = name[3]; 
+      hash = hash.replace(/\s+/g, ' ').trim();
    } else {
       //  TODO: for demo site, skip creating login if non-admin
       continue;           
-      // salt = genSalt(40);
-      // hash = hashPassword(user.username, salt);
+      // salt = passUtils.genSalt(40);
+      // hash = passUtils.hashPassword(user.username, salt);
    }
+   
    let login = {
+      id: uuid.v4(),
       userId: user.id,
       salt: salt,
       hash: hash
    };
    
-   console.log(JSON.stringify(login));
+   console.log(login.id + delim + JSON.stringify(login));
 }
