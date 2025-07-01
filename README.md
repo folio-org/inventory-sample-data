@@ -1,3 +1,9 @@
+# DEPRECATED
+
+This repository is deprecated and might be archived on 2025-08-01:
+* https://folio-org.atlassian.net/browse/FOLIO-4279 
+* https://folio-org.atlassian.net/wiki/spaces/COMMUNITY/pages/654770216/Deprecation+Policy+for+FOLIO+Modules+outside+of+the+official+supported+set+with+a+Severe+Security+Vulnerability
+
 # inventory-sample-data
 
 This repo provides 2 scripts; 1 for data preparation and 1 for data deployment.
