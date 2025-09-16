@@ -1,6 +1,6 @@
 # DEPRECATED
 
-This repository is deprecated and might be archived on 2025-08-01:
+This repository is deprecated. It doesn't work with supported FOLIO releases and has security issues:
 * https://folio-org.atlassian.net/browse/FOLIO-4279 
 * https://folio-org.atlassian.net/wiki/spaces/COMMUNITY/pages/654770216/Deprecation+Policy+for+FOLIO+Modules+outside+of+the+official+supported+set+with+a+Severe+Security+Vulnerability
 
